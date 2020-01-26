@@ -80,10 +80,10 @@ vector<State<T> *> BestFirstSearch<T>::search(Searchable<T> *searchable) {
 
 template<class T>
 State<T> *BestFirstSearch<T>::popFromOpen(multiset<State<T> *, CostComparator<T>> &open) {
-this->m_numNodesEvaluated++;
-State<T> *x = *(open.begin());
-open.erase(x);
-return x;
+    this->numOfNodesEvaluated++;
+    State<T> *x = *(open.begin());
+    open.erase(x);
+    return x;
 }
 
 template<class T>

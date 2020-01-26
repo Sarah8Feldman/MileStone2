@@ -10,20 +10,20 @@
 #include <cmath>
 
 class ManhattanDistance : public Heuristic<Point> {
-    State<Point>* m_goal;
+    State<Point>* myGoal;
 
 public:
-    ManhattanDistance() : m_goal(nullptr) {}
+    ManhattanDistance() : myGoal(nullptr) {}
     virtual ~ManhattanDistance() {}
 
     virtual void setGoal(State<Point>* goal) {
-        m_goal = goal;
+        myGoal = goal;
     }
 
     virtual double evaluateFromNode(State<Point>* current) {
         double val;
-        val = abs(m_goal->getState()->getX() - current->getState()->getX());
-        val += abs(m_goal->getState()->getY() - current->getState()->getY());
+        val = abs(myGoal->getState()->getX() - current->getState()->getX());
+        val += abs(myGoal->getState()->getY() - current->getState()->getY());
         return val;
     }
 };

@@ -26,32 +26,32 @@ public:
 template<class T>
 vector<State<T> *> BFS<T>::search(Searchable<T> *searchable) {
     vector<State<T> *> adjacentNodes;
-    State<T> *node;
-    node = searchable->getInitialState();
+    State<T> *stateNode;
+    stateNode = searchable->getInitialState();
     //create a queue
     queue<State<T> *> queue;
     //get the initial state
-    queue.push(node);
-    node->setCameFrom(nullptr);
-    this->m_numNodesEvaluated++;
+    queue.push(stateNode);
+    stateNode->setCameFrom(nullptr);
+    this->numOfNodesEvaluated++;
 
     while (!queue.empty()) {
-        node = queue.front();
+        stateNode = queue.front();
         queue.pop();
 
-        if (searchable->getGoalState() == node) {
+        if (searchable->getGoalState() == stateNode) {
             break;
         }
-        adjacentNodes = searchable->getAllPossibleStates(node);
+        adjacentNodes = searchable->getAllPossibleStates(stateNode);
         //check if we visited adjacent nodes
         for (auto iter: adjacentNodes) {
             State<T> *n = iter;
-            if (node->getCost() == -1) {
+            if (stateNode->getCost() == -1) {
                 continue;
             }
             if (!n->isVisited()) {
-                n->setCameFrom(node);
-                this->m_numNodesEvaluated++;
+                n->setCameFrom(stateNode);
+                this->numOfNodesEvaluated++;
                 //add to the queue
                 queue.push(n);
             }

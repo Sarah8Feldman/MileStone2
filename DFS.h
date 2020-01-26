@@ -33,19 +33,19 @@ vector<State<T> *> DFS<T>::search(Searchable<T> *searchable) {
 //    State<T> *cameFrom;
     vector<State<T> *> adjacentStates;
     //init the start and goal state
-    stack<State<T> *> stack;
+    stack<State<T> *> stateStack;
     State<T> *startState = searchable->getInitialState();
     State<T> *goalState = searchable->getGoalState();
     startState->setCameFrom(nullptr);
-    this->m_numNodesEvaluated++;
+    this->numOfNodesEvaluated++;
     //push the first node/state
-    stack.push(startState);
+    stateStack.push(startState);
 
-    while (!stack.empty()) {
+    while (!stateStack.empty()) {
 
         //init the top state to start, and pop this state out of the stack
-        startState = stack.top();
-        stack.pop();
+        startState = stateStack.top();
+        stateStack.pop();
 
         //if got to the the goal state-break
         if (startState == goalState) {
@@ -61,8 +61,8 @@ vector<State<T> *> DFS<T>::search(Searchable<T> *searchable) {
             }
             if (!temp->isVisited()) {
                 temp->setCameFrom(startState);
-                this->m_numNodesEvaluated++;
-                stack.push(temp);
+                this->numOfNodesEvaluated++;
+                stateStack.push(temp);
             }
         }
     }
